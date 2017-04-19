@@ -87,7 +87,7 @@ BCK_FILE="Cargo.toml.cross-compile-bck"
         awk '/\[lib\]/ { print; print "doctest=false"; next }1' > Cargo.toml
     else
       # First, extract the name of the lib, assume it is the first value
-      LIB_NAME=$(cat $BCK_FILE | grep 'name *=' | head -n 1 | awk -F '"' '{print $2}')
+      LIB_NAME=$(cat $BCK_FILE | grep 'name *=' | head -n 1 | tr - _ | awk -F '"' '{print $2}')
 
       cp $BCK_FILE Cargo.toml
       echo "[lib]" >> Cargo.toml
